@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Tracker</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9; /* Light, neutral background */
+            color: #2c3e50; /* Classy dark blue for text */
+            text-align: center;
+        }
+
+        /* Header */
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            color: #34495e; /* Slightly darker blue for the title */
+        }
+
+        /* Form Styling */
+        form {
+            margin: 20px auto;
+        }
+        input[type="text"] {
+            padding: 12px 15px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #3498db; /* Blue border */
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #2980b9; /* Darker blue when focused */
+            box-shadow: 0 0 8px rgba(41, 128, 185, 0.4); /* Subtle glow */
+        }
+        button {
+            padding: 12px 20px;
+            margin-left: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #3498db; /* Blue button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+
+        /* Weather Info */
+        .weather-info {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ecf0f1; /* Subtle light gray box */
+            border: 1px solid #bdc3c7; /* Light gray border */
+            border-radius: 8px;
+            display: inline-block;
+            text-align: left;
+            color: #2c3e50;
+        }
+        .weather-info h2 {
+            margin: 0 0 10px;
+            font-size: 1.8em;
+        }
+        .weather-info p {
+            margin: 5px 0;
+            font-size: 1.2em;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #7f8c8d; /* Muted text for footer */
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Tracker</h1>
+    <form method="get">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather %}
+    <div class="weather-info">
+        <h2>Weather in {{ city }}</h2>
+        <p><strong>Temperature:</strong> {{ weather["main"]["temp"] }}°C</p>
+        <p><strong>Condition:</strong> {{ weather["weather"][0]["description"].capitalize() }}</p>
+    </div>
+    {% else %}
+    <p style="color: #e74c3c; font-size: 1.2em;">Could not retrieve weather data. Try another city.</p>
+    {% endif %}
+
+    <footer>
+        &copy; 2024 Weather Tracker. Made with 💙 for simplicity and elegance.
+    </footer>
+</body>
+</html>
+
